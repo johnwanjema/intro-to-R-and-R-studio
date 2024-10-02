@@ -1,0 +1,41 @@
+---
+title: "Lab 1"
+author: "Elizandro, John"
+date: "`r Sys.Date()`"
+output: openintro::lab_report
+---
+
+```{r load-packages, message=FALSE}
+library(tidyverse)
+library(openintro)
+```
+
+### Exercise 1
+```{r code-chunk-label}
+# Insert code for Exercise 1 here
+arbuthnot$girls
+```
+
+### Exercise 2
+```{r}
+ggplot(data = arbuthnot, aes(x = year, y = girls)) + 
+  geom_line()
+```
+### Exercise 3
+```{r}
+ggplot(data = arbuthnot, aes(x = year, y = boys)) + 
+  geom_line()
+```
+```{r}
+arbuthnot <- arbuthnot |>
+  mutate(total = boys + girls)
+```
+```{r}
+arbuthnot <- arbuthnot |>
+  mutate(boy_prop = boys / total)
+```
+```{r}
+ggplot(data = arbuthnot, aes(x = year, y = boy_prop)) + 
+  geom_line()
+```
+
