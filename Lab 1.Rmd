@@ -12,7 +12,6 @@ library(openintro)
 
 ### Exercise 1
 ```{r code-chunk-label}
-# Insert code for Exercise 1 here
 arbuthnot$girls
 ```
 
@@ -21,6 +20,7 @@ arbuthnot$girls
 ggplot(data = arbuthnot, aes(x = year, y = girls)) + 
   geom_line()
 ```
+
 ### Exercise 3
 ```{r}
 ggplot(data = arbuthnot, aes(x = year, y = boys)) + 
@@ -37,5 +37,48 @@ arbuthnot <- arbuthnot |>
 ```{r}
 ggplot(data = arbuthnot, aes(x = year, y = boy_prop)) + 
   geom_line()
+```
+
+### Exercise 4
+The years included are 1940 to 2002.
+Present has 3 columns and 63 rows.
+Column names are years,boys and girls.
+```{r}
+glimpse(present)
+dim(present)
+min(present$year)
+max(present$year)
+```
+### Exercise 5
+
+Arbuthnot has more years than present.
+```{r}
+dim(present)
+dim(arbuthnot)
+```
+
+### Exercise 6
+
+With present 
+```{r}
+present <- present |>
+  mutate(total = boys + girls)
+
+present <- present |>
+  mutate(present_boy_prop = boys / total)
+
+ggplot(data = arbuthnot, aes(x = year, y = boy_prop)) + 
+  geom_line()
+
+ggplot(data = present, aes(x = year, y = present_boy_prop)) + 
+  geom_line()
+```
+
+### Exercise 7
+The year with most births is 1961
+
+```{r}
+present |>
+  arrange(desc(total))
 ```
 
